@@ -1,14 +1,80 @@
 require(readxl)
 require(devtools)
-load_all('C:/C:/Users/cooka/OneDrive - DFO-MPO/git/LSTA')
-#read in file
-x = importFile(pa='C:/Users/cooka/OneDrive - DFO-MPO/Fishing_Behaviour/Changes in Fishing Practices Over Time.xlsx '
-                 )
-qu = x[[1]]
-an = x[[2]]
+load_all('C:/Users/cooka/Documents/git/LSTA')
 
-for(i in 1:nrow(an)){
-  an1 = an[i,]
-  fn=paste(paste(as.character(an1[1,1]),'xlsx',sep='.'))
-  write_xlsx(an1,path=fn)
-}
+#read in responses
+re = responsesReadIn()
+su = surveyReadIn()
+cq = columns_per_question() #what columns from spread sheet do we need for this question
+
+
+#Question 9 Split the Data by LFAs
+      q9 = su[[9]]
+      id = grep('q9',names(cq))
+      v = cq[[id]]
+      x = re[,c(1,v)]
+LFA = idLFA(x)
+
+
+#Question 8 Fishing Grounds
+      q8 = su[[8]]
+      id = grep('q8',names(cq))
+      v = cq[[id]]
+      x = re[,c(1,v)]
+FishingGround = idFishingGround(x)
+
+
+#Question 17 Lobster catches
+
+      q17 = su[[17]]
+      id = grep('q17',names(cq))
+      v = cq[[id]]
+      x = re[,c(1,v)]
+LobsterCatches = idLobsterCatches(x)
+
+
+#Question 23 Boat equipment
+    q23 = su[[23]]
+    id = grep('q23',names(cq))
+    v = cq[[id]]
+    x = re[,c(1,v)]
+    technology = idTechnology(x)
+
+
+#Question 29 bait source
+    q29 = su[[29]]
+    id = grep('q29',names(cq))
+    v = cq[[id]]
+    x = re[,c(1,v)]
+    baitSource = idBaitSource(x)
+
+#Question 30 bait type
+    q30 = su[[30]]
+    id = grep('q30',names(cq))
+    v = cq[[id]]
+    x = re[,c(1,v)]
+    baitType = idBaitType(x)
+
+#Question 42 gear configuration
+    q42 = su[[44]]
+    id = grep('q42',names(cq))
+    v = cq[[id]]
+    x = re[,c(1,v)]
+    baitType = idGearConfig(x)
+
+#Question 45 Other Fisheries
+    q45 = su[[47]]
+    id = grep('q45',names(cq))
+    v = cq[[id]]
+    x = re[,c(1,v)]
+    speciesFished = idSpeciesFished(x)
+
+
+load_all('C:/Users/cooka/Documents/git/LSTA')
+
+
+
+q7 = su[[13]]
+id = grep('13',names(cq))
+v = cq[[id]]
+x = re[,c(1,v)]
