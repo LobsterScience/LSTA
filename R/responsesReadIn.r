@@ -1,7 +1,12 @@
 #' @export
 
-responsesReadIn <- function(su='C:/Users/cooka/OneDrive - DFO-MPO/Fishing_Behaviour/Responses/') {
-  pa=file.path(su,'Online/Changes in Fishing Practices Over Time.xlsx')
+responsesReadIn <- function(su='C:/Users/cooka/OneDrive - DFO-MPO/Fishing_Behaviour/Responses/',onefile=T) {
+if(onefile) {
+  pa=file.path(su,'Combined.xlsx')
+  return( readxl::read_excel(pa,sheet=1))
+
+  }
+    pa=file.path(su,'Online/Changes in Fishing Practices Over Time.xlsx')
   x = readxl::read_excel(pa,sheet=1)
   re = x
   pa=file.path(su,'MailIn')

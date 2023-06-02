@@ -3,7 +3,7 @@ require(devtools)
 load_all('C:/Users/cooka/Documents/git/LSTA')
 
 #read in responses
-re = responsesReadIn()
+re = responsesReadIn(onefile=T)
 su = surveyReadIn()
 cq = columns_per_question() #what columns from spread sheet do we need for this question
 
@@ -14,6 +14,7 @@ cq = columns_per_question() #what columns from spread sheet do we need for this 
       v = cq[[id]]
       x = re[,c(1,v)]
 LFA = idLFA(x)
+
 
 
 #Question 8 Fishing Grounds
@@ -60,7 +61,7 @@ LobsterCatches = idLobsterCatches(x)
     id = grep('q42',names(cq))
     v = cq[[id]]
     x = re[,c(1,v)]
-    baitType = idGearConfig(x)
+    gearConf = idGearConfig(x)
 
 #Question 45 Other Fisheries
     q45 = su[[47]]
