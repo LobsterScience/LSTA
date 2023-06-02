@@ -15,7 +15,7 @@ idSpeciesFished <- function(x){
       xi = x[i,c(wnm[j],wpc[j])]
       o = c(o, paste(xi,collapse=','))
     }
-    oo = paste(o,collapse="|")
+    oo = paste(o,collapse="_")
     out$Species[i] = oo
   }
 

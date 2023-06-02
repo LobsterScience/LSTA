@@ -3,6 +3,7 @@
 decodeSpeciesFished <- function(x){
       x = bio.utilities::recode(x,"'snow crab'='snow crab';
     'Snow crab'='snow crab';
+    'Snow Crab'='snow crab';
     'Scallop'='Scallop';
     'Herring'='Herring';
     'Green crab'='Green crab';
@@ -23,7 +24,8 @@ decodeSpeciesFished <- function(x){
     'Longline Halibut'='Halibut';
     'herring weir'='Herring';
     'Sea urchin'='Sea urchin';
-    'Halibut'='Halibut';")
+    'Halibut'='Halibut';
+    'Bluefin Tuna'='Tuna';")
 
       return(x)
 
