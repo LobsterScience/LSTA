@@ -5,6 +5,7 @@ require(bio.utilities)
 require(devtools)
 
 load_all('~/git/bio.utilities')
+load_all('C:/Users/cooka/Documents/git/LSTA')
 
 a = lobster.db('process.logs.unfiltered')
 b = lobster.db('community_code')
@@ -16,7 +17,7 @@ w = lobster.db('port')
 v = lobster.db('port_location')
 
 #Demographics on Lic
-o = readRDS('data/LicenceCharacterisitics.rds')
+o = lobster.db('licence_characteristics')
 
 #vessel characterisitcs
 v = readRDS('data/VesselCharacterisitics.rds')
@@ -25,9 +26,21 @@ v = readRDS('data/VesselCharacterisitics.rds')
 ##age distribution
 ages = readRDS('data/ageOfRespondants.rds')
 o$ageBin = floor(o$Age/10)*10
-o$ageBin = bio.utilities::recode(o$ageBin, "'20'='20-29'; '30'='30-39'; '40'='40-49';'50'='50-59';'60'='60-69'; '70'='70-79';'80'='80-89'; ")
+o$ageBin = bio.utilities::recode(o$ageBin, "'20'='20-29'; '30'='30-39'; '40'='40-49';'50'='50-59';'60'='60-69'; '70'='70-79';'80'='80 +'; ")
 o$LFAs = paste('LFA',o$LFA,sep=" ")
 f=subset(o,LFA==38)
 s = ages[['LFA 38']]
 
-plotAges(f,s)
+plotAges(s=s,fp=f)
+
+f=subset(o,LFA==29& !is.na(Age))
+s = ages[['LFA 29']]
+
+plotAges(s=s,fp=f)
+
+
+f=subset(o,LFA==36)
+s = ages[['LFA 36']]
+
+plotAges(s=s,fp=f)
+

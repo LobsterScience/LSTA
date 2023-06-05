@@ -1,5 +1,6 @@
 #source(2.DataLoadScript.r)
 dir.create('data',showWarnings = F)
+load_all('C:/Users/cooka/Documents/git/LSTA')
 
 #Question 9 Split the Data by LFAs
 q9 = su[[9]]
@@ -75,7 +76,6 @@ speciesFished = idSpeciesFished(x)
 spec = merge(speciesFished,LFA)
 tabulateSpeciesFished(spec,groupVariable = 'PrimaryLFA')
 
-load_all('C:/Users/cooka/Documents/git/LSTA')
 
 
 
