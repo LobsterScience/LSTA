@@ -17,7 +17,8 @@ w = lobster.db('port')
 v = lobster.db('port_location')
 
 #Demographics on Lic
-o = lobster.db('licence_characteristics')
+#o = lobster.db('licence_characteristics')
+o = readRDS(file='data/FisheryLicences.rds')
 
 #vessel characterisitcs
 v = readRDS('data/VesselCharacterisitics.rds')
