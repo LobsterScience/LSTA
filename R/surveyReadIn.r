@@ -1,6 +1,6 @@
 #' @export
 
-surveyReadIn <- function(su='C:/Users/cooka/OneDrive - DFO-MPO/Fishing_Behaviour/Survey.xlsx') {
+surveyReadIn <- function(su='data/Survey.xlsx') {
           sR = readxl::read_excel(su,sheet=1,col_names = F)
         naR = which(apply(sR,1,function(x) all(is.na(x))))
         survey = list()

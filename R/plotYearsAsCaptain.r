@@ -1,7 +1,7 @@
 #' @export
-plotAges <- function(s,fp){
+plotYearsAsCaptain <- function(s,fp){
 
-  f1 = as.data.frame(table(fp$ageBin)/nrow(fp)*100)
+  f1 = as.data.frame(table(fp$yrH)/nrow(fp)*100)
   s1 = as.data.frame(s)
   names(s1)[1]='Var1'
   f1$Group = 'Fishery'
@@ -20,9 +20,8 @@ plotAges <- function(s,fp){
   }
 
   c1 = dplyr::bind_rows(list(f1,s1))
-  c1$Var1 = factor(c1$Var1,levels=c('20-29','30-39','40-49','50-59','60-69','70-79','80 +'))
-
-print(  ggplot(c1,aes(fill=Group,y=Freq,x=Var1))+geom_bar(position = 'dodge',stat='identity')+labs(x = 'Age Bins', y='Percent'))
+  c1$Var1 = factor(c1$Var1,levels=c('<5','5-14','15-29','30+'))
+print(  ggplot(c1,aes(fill=Group,y=Freq,x=Var1))+geom_bar(position = 'dodge',stat='identity')+labs(x = 'Years As Captain', y='Percent'))
   return(c1)
 }
 

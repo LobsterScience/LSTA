@@ -20,28 +20,68 @@ v = lobster.db('port_location')
 #o = lobster.db('licence_characteristics')
 o = readRDS(file='data/FisheryLicences.rds')
 
-#vessel characterisitcs
-v = readRDS('data/VesselCharacterisitics.rds')
 
 
 ##age distribution
-ages = readRDS('data/ageOfRespondants.rds')
-o$ageBin = floor(o$Age/10)*10
-o$ageBin = bio.utilities::recode(o$ageBin, "'20'='20-29'; '30'='30-39'; '40'='40-49';'50'='50-59';'60'='60-69'; '70'='70-79';'80'='80 +'; ")
-o$LFAs = paste('LFA',o$LFA,sep=" ")
-f=subset(o,LFA==38)
-s = ages[['LFA 38']]
+        ages = readRDS('data/ageOfRespondants.rds')
+        o$ageBin = floor(o$Age/10)*10
+        o$ageBin = bio.utilities::recode(o$ageBin, "'20'='20-29'; '30'='30-39'; '40'='40-49';'50'='50-59';'60'='60-69'; '70'='70-79';'80'='80 +'; ")
+        o$LFAs = paste('LFA',o$LFA,sep=" ")
 
-plotAges(s=s,fp=f)
+        f=subset(o,LFA==28& !is.na(Age))
+        s = ages[['LFA 28']]
+        plotAges(s=s,fp=f)
 
-f=subset(o,LFA==29& !is.na(Age))
-s = ages[['LFA 29']]
+        f=subset(o,LFA==29& !is.na(Age))
+        s = ages[['LFA 29']]
+        plotAges(s=s,fp=f)
 
-plotAges(s=s,fp=f)
+        f=subset(o,LFA==30& !is.na(Age))
+        s = ages[['LFA 30']]
+        plotAges(s=s,fp=f)
+
+        f=subset(o,LFA==36& !is.na(Age))
+        s = ages[['LFA 36']]
+        plotAges(s=s,fp=f)
+
+        f=subset(o,LFA==38& !is.na(Age))
+        s = ages[['LFA 38']]
+        plotAges(s=s,fp=f)
 
 
-f=subset(o,LFA==36)
-s = ages[['LFA 36']]
+##years as captain distribution
+        yrc = readRDS('data/yearsAsCaptainRespondants.rds')
 
-plotAges(s=s,fp=f)
+        o$yrH = dplyr::case_when(o$YearsHeld<5~'<5',
+                                 o$YearsHeld>=5 & o$YearsHeld<15 ~ '5-14',
+                                 o$YearsHeld>=15 & o$YearsHeld<30 ~ '15-29',
+                                 o$YearsHeld>=30  ~ '30+'
+        )
+        o$LFAs = paste('LFA',o$LFA,sep=" ")
 
+        f=subset(o,LFA==28)
+        s = yrc[['LFA 28']]
+        plotYearsAsCaptain(s=s,fp=f)
+
+        f=subset(o,LFA==29& !is.na(Age))
+        s = yrc[['LFA 29']]
+        plotYearsAsCaptain(s=s,fp=f)
+
+        f=subset(o,LFA==30& !is.na(Age))
+        s = yrc[['LFA 30']]
+        plotYearsAsCaptain(s=s,fp=f)
+
+        f=subset(o,LFA==36& !is.na(Age))
+        s = yrc[['LFA 36']]
+        plotYearsAsCaptain(s=s,fp=f)
+
+        f=subset(o,LFA==38& !is.na(Age))
+        s = yrc[['LFA 38']]
+        plotYearsAsCaptain(s=s,fp=f)
+
+
+
+
+##vessel size distribution
+        #vessel characterisitcs
+        v = readRDS('data/VesselCharacterisitics.rds')
