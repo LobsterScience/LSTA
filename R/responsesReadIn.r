@@ -1,8 +1,8 @@
 #' @export
 
-responsesReadIn <- function(su='C:/Users/cooka/OneDrive - DFO-MPO/Fishing_Behaviour/Responses/',onefile=T) {
+responsesReadIn <- function(su='data/',onefile=T) {
 if(onefile) {
-  pa=file.path(su,'Combined.xlsx')
+  pa=file.path(su,'Combined_AMC_STANDARDIZED.xlsx')
   return( readxl::read_excel(pa,sheet=1))
 
   }

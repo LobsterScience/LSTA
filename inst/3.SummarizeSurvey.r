@@ -19,6 +19,17 @@ AgeL = merge(LFA,x)
 ages = tabulateAges(AgeL,groupVariable='PrimaryLFA')
 saveRDS(ages,'data/ageOfRespondants.rds')
 
+#Question 3 Years Captain
+q3 = su[[3]]
+id = grep('^q3$',names(cq))
+v = cq[[id]]
+x = re[,c(1,v)]
+yc = merge(LFA,x)
+
+yRC = tabulateYearsCaptain(x=yc,groupVariable='PrimaryLFA')
+saveRDS(yRC,'data/yearsAsCaptainRespondants.rds')
+
+
 
 #Question 8 Fishing Grounds
 q8 = su[[8]]
@@ -76,6 +87,17 @@ speciesFished = idSpeciesFished(x)
 spec = merge(speciesFished,LFA)
 tabulateSpeciesFished(spec,groupVariable = 'PrimaryLFA')
 
+
+###boat specs
+q22 = su[[22]]
+id = grep('q22',names(cq))
+v = cq[[id]]
+x = re[,c(1,v)]
+boatSpecs = idBoatSpecs(x)
+yc = merge(LFA,boatSpecs,by.x='Source.Name',by.y='id')
+
+yRC = tabulateBoatSpecs(x=yc,groupVariable='PrimaryLFA')
+saveRDS(yRC,'data/yearsAsCaptainRespondants.rds')
 
 
 
