@@ -14,8 +14,7 @@ tabulateBoatSpecs <- function(x,variableOfInterest=c('length','width','livewell'
     if(variableOfInterest %in% c('length','width','fuel')){
       if(any(!is.na(m))){
         v = hist(m,breaks=seq(min(m,na.rm=T),max(m,na.rm=T),by=1),plot=F)
-        out[[i]] = data.frame(v
-                              names(out)[[i]] = unique(x5[[i]]$PrimaryLFA)
+        out[[i]] = data.frame(            names(out)[[i]] = unique(x5[[i]]$PrimaryLFA)) ##not done
       }
     }
   }
