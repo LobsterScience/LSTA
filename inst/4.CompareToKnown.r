@@ -63,25 +63,76 @@ o = readRDS(file='data/FisheryLicences.rds')
         s = yrc[['LFA 28']]
         plotYearsAsCaptain(s=s,fp=f)
 
-        f=subset(o,LFA==29& !is.na(Age))
+        f=subset(o,LFA==29)
         s = yrc[['LFA 29']]
         plotYearsAsCaptain(s=s,fp=f)
 
-        f=subset(o,LFA==30& !is.na(Age))
+        f=subset(o,LFA==30)
         s = yrc[['LFA 30']]
         plotYearsAsCaptain(s=s,fp=f)
 
-        f=subset(o,LFA==36& !is.na(Age))
+        f=subset(o,LFA==36)
         s = yrc[['LFA 36']]
         plotYearsAsCaptain(s=s,fp=f)
 
-        f=subset(o,LFA==38& !is.na(Age))
+        f=subset(o,LFA==38)
         s = yrc[['LFA 38']]
         plotYearsAsCaptain(s=s,fp=f)
 
 
 
 
-##vessel size distribution
+##vessel length distribution
         #vessel characterisitcs
         v = readRDS('data/VesselCharacterisitics.rds')
+
+        #vessel length
+        l = readRDS('data/lengthofBoats.rds')
+
+        l8 = l[['LFA 28']]
+        fp = subset(v,LFA==28, select=c(LOA))
+        plotBoatLengths(s=l8,fp=fp)
+
+
+        l8 = l[['LFA 29']]
+        fp = subset(v,LFA==29, select=c(LOA))
+        plotBoatLengths(s=l8,fp=fp)
+
+        l8 = l[['LFA 30']]
+        fp = subset(v,LFA==30, select=c(LOA))
+        plotBoatLengths(s=l8,fp=fp)
+
+        l8 = l[['LFA 36']]
+        fp = subset(v,LFA==36, select=c(LOA))
+        plotBoatLengths(s=l8,fp=fp)
+
+        l8 = l[['LFA 38']]
+        fp = subset(v,LFA==38, select=c(LOA))
+        plotBoatLengths(s=l8,fp=fp)
+
+
+  #boat width
+    l = readRDS('data/widthofBoats.rds')
+    l8 = l[['LFA 28']]
+    fp = subset(v,LFA==28, select=c(BREADTH))
+    plotBoatWidths(s=l8,fp=fp)
+
+
+    l8 = l[['LFA 29']]
+    fp = subset(v,LFA==29, select=c(BREADTH))
+    plotBoatWidths(s=l8,fp=fp)
+
+    l8 = l[['LFA 30']]
+    fp = subset(v,LFA==30, select=c(BREADTH))
+    plotBoatWidths(s=l8,fp=fp)
+
+    l8 = l[['LFA 36']]
+    fp = subset(v,LFA==36, select=c(BREADTH))
+    plotBoatWidths(s=l8,fp=fp)
+
+    l8 = l[['LFA 38']]
+    fp = subset(v,LFA==38, select=c(BREADTH))
+    plotBoatWidths(s=l8,fp=fp)
+
+
+

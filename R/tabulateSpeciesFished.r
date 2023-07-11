@@ -17,10 +17,10 @@ tabulateSpeciesFished <- function(x, groupVariable='PrimaryLFA'){
   x3$Source.Name = nam
   x4 = merge(x,x3)
   co = grep('V',names(x4))
-  x5 = split(x4,f=x4[,groupVariable])
+  if(!is.na(groupVariable)){ x5 = split(x4,f=x4[,groupVariable]); par(mfrow=c(2,2),las=2)}
+  if(is.na(groupVariable)) x5 = list(x4)
 
   out=list()
-  par(mfrow=c(2,2),las=2)
 
   for(i in 1:length(x5)){
          m = tools::toTitleCase(unlist(x5[[i]][,co]))
@@ -38,8 +38,9 @@ tabulateSpeciesFished <- function(x, groupVariable='PrimaryLFA'){
               }
     out[[i]] = v
     names(out)[[i]] = unique(x5[[i]]$PrimaryLFA)
+    if(length(x5)>1)barplot(v,ylab='Percent of Respondants',main=paste(unique(unique(x5[[i]]$PrimaryLFA)),'; n=',l,sep=" "))
+    if(length(x5)==1)print(ggplot2::ggplot(as.data.frame(v),aes(x=m,y=Freq,fill=m))+geom_bar(stat='identity')+ylab('Responses (%)')+ xlab('Species')+ theme(axis.text.x = element_text(angle=90),legend.position='none'))
 
-    barplot(v,ylab='Percent of Respondants',main=paste(unique(unique(x5[[i]]$PrimaryLFA)),'; n=',l,sep=" "))
     }
   }
   return(out)

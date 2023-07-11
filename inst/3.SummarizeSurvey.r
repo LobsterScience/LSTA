@@ -29,6 +29,26 @@ yc = merge(LFA,x)
 yRC = tabulateYearsCaptain(x=yc,groupVariable='PrimaryLFA')
 saveRDS(yRC,'data/yearsAsCaptainRespondants.rds')
 
+###boat specs
+q22 = su[[22]]
+id = grep('q22',names(cq))
+v = cq[[id]]
+x = re[,c(1,v)]
+boatSpecs = idBoatSpecs(x)
+yc = merge(LFA,boatSpecs,by.x='Source.Name',by.y='id')
+
+yRC = tabulateBoatSpecs(x=yc,groupVariable='PrimaryLFA', variableOfInterest = 'lengthCorrected')
+saveRDS(yRC,'data/lengthofBoats.rds')
+
+yRW = tabulateBoatSpecs(x=yc,groupVariable='PrimaryLFA', variableOfInterest = 'width')
+saveRDS(yRW,'data/widthofBoats.rds')
+
+yRF = tabulateBoatSpecs(x=yc,groupVariable='PrimaryLFA', variableOfInterest = 'fuel')
+saveRDS(yRF,'data/fuelBoats.rds')
+
+yRL = tabulateBoatSpecs(x=yc,groupVariable='PrimaryLFA', variableOfInterest = 'livewell')
+saveRDS(yRL,'data/livewellBoats.rds')
+
 
 
 #Question 8 Fishing Grounds
@@ -86,22 +106,6 @@ speciesFished = idSpeciesFished(x)
 
 spec = merge(speciesFished,LFA)
 tabulateSpeciesFished(spec,groupVariable = 'PrimaryLFA')
+tabulateSpeciesFished(subset(spec,PrimaryLFA=='LFA 38'),groupVariable = NA)
 
-
-###boat specs
-q22 = su[[22]]
-id = grep('q22',names(cq))
-v = cq[[id]]
-x = re[,c(1,v)]
-boatSpecs = idBoatSpecs(x)
-yc = merge(LFA,boatSpecs,by.x='Source.Name',by.y='id')
-
-yRC = tabulateBoatSpecs(x=yc,groupVariable='PrimaryLFA')
-saveRDS(yRC,'data/yearsAsCaptainRespondants.rds')
-
-
-
-q7 = su[[13]]
-id = grep('13',names(cq))
-v = cq[[id]]
-x = re[,c(1,v)]
+tabulateSpeciesFishedIncome(subset(spec,PrimaryLFA=='LFA 38'),by.lfa=F)
