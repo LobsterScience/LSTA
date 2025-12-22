@@ -12,7 +12,7 @@ tabulateYearsCaptain <- function(x, groupVariable='PrimaryLFA'){
          l = nrow(x5[[i]])
     if(any(!is.na(m))){
     v = table(m)/l*100
-    barplot(v,ylab='Percent of Respondants',xlab='Ages',              main=paste(unique(x5[[i]]$PrimaryLFA),'; n=',l,sep=" "))
+    barplot(v,ylab='Percent of Respondants',xlab='Years Captain',              main=paste(unique(x5[[i]]$PrimaryLFA),'; n=',l,sep=" "))
     out[[i]] = v
     names(out)[[i]] = unique(x5[[i]]$PrimaryLFA)
       }
