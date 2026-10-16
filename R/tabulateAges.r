@@ -12,12 +12,12 @@ tabulateAges <- function(x, groupVariable='PrimaryLFA'){
        w = grep('year',m)
        m[w] = substring(m[w],1,5)
      }
-    if(any(!is.na(m))){
-    v = table(m)/l*100
-    barplot(v,ylab='Percent of Respondants',xlab='Ages',              main=paste(unique(x5[[i]]$PrimaryLFA),'; n=',l,sep=" "))
-    out[[i]] = v
-    names(out)[[i]] = unique(x5[[i]]$PrimaryLFA)
-      }
+         if(any(!is.na(m))){
+           v = table(m)/l*100
+           barplot(v,ylab='Percent of Respondants',xlab='Ages',              main=paste(unique(x5[[i]]$PrimaryLFA),'; n=',l,sep=" "))
+           out[[i]] = v
+           names(out)[[i]] = unique(x5[[i]]$PrimaryLFA)
+         }
   }
   return(out)
-  }
+}
